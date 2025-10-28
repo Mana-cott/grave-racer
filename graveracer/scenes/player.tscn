@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bivj1mu1iyrii"]
+
+[ext_resource type="PackedScene" uid="uid://duupcin1uhu7e" path="res://scenes/model.tscn" id="1_5tdbu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_utwfg"]
+radius = 1.0
+
+[node name="Player" type="RigidBody3D"]
+
+[node name="model" parent="." instance=ExtResource("1_5tdbu")]
+transform = Transform3D(0.758224, 0, 0, 0, 0.758224, 0, 0, 0, 0.758224, 0, 0.453163, -0.305776)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_utwfg")
