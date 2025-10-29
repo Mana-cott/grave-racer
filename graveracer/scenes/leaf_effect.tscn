@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceiw5pnnqy2ww"]
+
+[ext_resource type="Texture2D" uid="uid://hiuswaxp86xm" path="res://assets/sprites/leaf2.png" id="1_6lgcj"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e3ocj"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -90.0
+angle_max = 1.07288e-05
+spread = 100.0
+angular_velocity_min = -396.0
+angular_velocity_max = 396.0
+orbit_velocity_min = -1.067
+orbit_velocity_max = 0.333
+scale_min = 0.0
+scale_max = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78w42"]
+transparency = 1
+albedo_texture = ExtResource("1_6lgcj")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xktgv"]
+material = SubResource("StandardMaterial3D_78w42")
+
+[node name="LeafEffect" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_e3ocj")
+draw_pass_1 = SubResource("PlaneMesh_xktgv")

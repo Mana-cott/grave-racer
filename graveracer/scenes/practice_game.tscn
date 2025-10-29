@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://pe1vt6d1572i"]
+
+[ext_resource type="Script" path="res://scripts/practice_game.gd" id="1_gvwwr"]
+[ext_resource type="PackedScene" uid="uid://cdorf763q4wty" path="res://scenes/racetrack.tscn" id="1_vitvi"]
+[ext_resource type="PackedScene" uid="uid://biau26idnr45o" path="res://assets/models/PSX_BoneSkull.fbx" id="2_8r6ki"]
+[ext_resource type="PackedScene" uid="uid://cr31g7eifnq4e" path="res://car.tscn" id="3_qne26"]
+[ext_resource type="PackedScene" uid="uid://ci5oswoqk0wn" path="res://scenes/finish_line.tscn" id="5_0xyly"]
+
+[sub_resource type="Environment" id="Environment_gkjbp"]
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xu4if"]
+size = Vector3(1450.36, 190, 2185.5)
+
+[node name="PracticeGame" type="Node3D"]
+script = ExtResource("1_gvwwr")
+
+[node name="Racetrack" parent="." instance=ExtResource("1_vitvi")]
+transform = Transform3D(16, 0, 0, 0, 9.031, 0, 0, 0, 16.347, 0, 22.8317, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gkjbp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 17, 0)
+
+[node name="PSX_BoneSkull" parent="." instance=ExtResource("2_8r6ki")]
+transform = Transform3D(95.2506, 0, 0, 0, 111.628, 0, 0, 0, 87.4329, 28, 1, 6)
+
+[node name="Car" parent="." instance=ExtResource("3_qne26")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 228.266, 243.293, 111.761)
+max_laps = 99
+
+[node name="DeathZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -203.997, 94.5, -644.846)
+shape = SubResource("BoxShape3D_xu4if")
+
+[node name="FinishLine" parent="." instance=ExtResource("5_0xyly")]
+transform = Transform3D(13.8155, 0, 0, 0, 13.8155, 0, 0, 0, 13.8155, -485.933, 238.842, -55.7125)

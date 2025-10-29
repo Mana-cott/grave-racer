@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdorf763q4wty"]
+
+[ext_resource type="Texture2D" uid="uid://b6ekbui20jxom" path="res://assets/textures/fall_leaves.jpg" id="1_6r3uv"]
+
+[sub_resource type="Curve3D" id="Curve3D_qb5a4"]
+_data = {
+"points": PackedVector3Array(-0.0421984, -0.000376701, 0.483056, 0.0421984, 0.000376701, -0.483056, -1.8969, 1.8239e-05, -0.507203, -0.103863, -0.000143051, 0.171989, 0.103863, 0.000143051, -0.171989, -1.91489, 1.8239e-05, -4.55468, -0.426897, -3.24249e-05, 0.0196567, 0.426897, 3.24249e-05, -0.0196567, -1.51913, 1.8239e-05, -5.67541, -0.214953, 7.48634e-05, -0.104161, 0.214953, -7.48634e-05, 0.104161, -0.628435, 0.000187993, -4.99771, 0.378306, 0.000121117, -0.293333, -0.378306, -0.000121117, 0.293333, -1.01545, 1.8239e-05, -4.17691, -0.277223, 0.000303745, -0.392406, 0.277223, -0.000303745, 0.392406, -1.10539, 1.8239e-05, -2.36005, 0.032734, 7.29561e-05, -0.0931787, -0.032734, -7.29561e-05, 0.0931787, 0.873375, 1.8239e-05, -0.129439, 0.195063, 0.000227928, -0.306454, -0.195063, -0.000227928, 0.306454, 0.80142, 1.8239e-05, 0.464191, 0.395412, 1.90735e-05, -0.0359815, -0.395412, -1.90735e-05, 0.0359815, 0.117845, 1.8239e-05, 1.00385, 0.236586, -0.000103474, 0.125449, -0.236586, 0.000103474, -0.125449, -0.52975, 1.8239e-05, 0.805977, 0.322176, -0.000122547, 0.148467, -0.322176, 0.000122547, -0.148467, -1.14137, 1.8239e-05, 0.428214, 0.316204, -9.05991e-05, 0.0982791, -0.316204, 9.05991e-05, -0.0982791, -1.68103, 1.8239e-05, 0.374247, 0, 0, 0, 0, 0, 0, -1.8969, 1.8239e-05, -0.507203),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 13
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfctk"]
+render_priority = 1
+albedo_texture = ExtResource("1_6r3uv")
+metallic_texture = ExtResource("1_6r3uv")
+uv1_scale = Vector3(10, 10, 10)
+
+[node name="Racetrack" type="Node3D"]
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0031544, -1.8239e-05, -0.0224453)
+curve = SubResource("Curve3D_qb5a4")
+
+[node name="Road" type="CSGPolygon3D" parent="."]
+transform = Transform3D(0.999946, 0, 0.0103671, 0, 1, 0, -0.0103671, 0, 0.999946, -0.000206629, 4.76837e-07, -0.00248933)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0, 0.015, 0.15, 0.015, 0.15, 0)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 0.1
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("StandardMaterial3D_hfctk")

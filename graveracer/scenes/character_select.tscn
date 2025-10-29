@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://drk5ek55sdq0t"]
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 647.0
+columns = 2
+
+[node name="GhoulButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Ghoul
+"
+
+[node name="SkeleboyButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Skeleboy"

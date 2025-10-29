@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://ci5oswoqk0wn"]
+
+[ext_resource type="Texture2D" uid="uid://calfjms7vjhqy" path="res://assets/textures/pumpkintx_slime.jpg" id="1_2ua6a"]
+[ext_resource type="Script" path="res://scenes/finish_line.gd" id="1_t50vj"]
+[ext_resource type="Texture2D" uid="uid://mrohm4ppewh1" path="res://assets/sprites/finish_flag-Sheet.png" id="2_08n07"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3575i"]
+albedo_texture = ExtResource("1_2ua6a")
+emission_enabled = true
+emission = Color(0.180736, 0.0859391, 0.0509515, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_461k7"]
+material = SubResource("StandardMaterial3D_3575i")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5gpm8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_27kgr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2ibl"]
+atlas = ExtResource("2_08n07")
+region = Rect2(0, 0, 512, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80u87"]
+atlas = ExtResource("2_08n07")
+region = Rect2(512, 0, 512, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcmn6"]
+atlas = ExtResource("2_08n07")
+region = Rect2(1024, 0, 512, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3pu5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2ibl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80u87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcmn6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u64b0"]
+size = Vector3(1.75354, 1.12402, 0.237549)
+
+[node name="FinishLine" type="Node3D"]
+script = ExtResource("1_t50vj")
+
+[node name="GoalPost1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.625, 0, 0, 0, 0.25, 0, 0, 0)
+mesh = SubResource("CylinderMesh_461k7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalPost1"]
+shape = SubResource("CylinderShape3D_5gpm8")
+
+[node name="GoalPost2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.625, 0, 0, 0, 0.25, 2, 0, 0)
+mesh = SubResource("CylinderMesh_461k7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalPost2"]
+shape = SubResource("CylinderShape3D_27kgr")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.3526, 0, 0, 0, 0.170907, 0, 0, 0, 0.170907, 0.993268, 0.452097, 0)
+sprite_frames = SubResource("SpriteFrames_w3pu5")
+frame_progress = 0.135537
+
+[node name="StartPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0007, -0.0620117, 0.00378418)
+shape = SubResource("BoxShape3D_u64b0")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

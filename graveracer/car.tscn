@@ -242,7 +242,7 @@ transform = Transform3D(0.771577, 0, 0, 0, 0.771577, 0, 0, 0, 0.771577, 3.21888e
 transform = Transform3D(0.645027, 0, -7.10543e-15, 0, 0.645027, 0, 7.10543e-15, 0, 0.645027, 4.02797e-08, 0.263421, -0.460567)
 sprite_frames = SubResource("SpriteFrames_fa4jj")
 animation = &"idle"
-frame_progress = 0.364366
+frame_progress = 0.235141
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Car/Model/kart"]
 transform = Transform3D(1, 0, -4.9738e-14, 0, 1, 0, 4.9738e-14, 0, 1, -0.00902759, 1.22753, 1.20588)
@@ -275,7 +275,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_mn8d2")
 transform = Transform3D(1, 0, 0, 0, 0.969016, 0.246999, 0, -0.246999, 0.969016, 0.171, 2.513, 3.609)
 fov = 80.0
 
+[node name="NitroTimer" type="Timer" parent="."]
+
 [node name="DriftTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [node name="BoostTimer" type="Timer" parent="."]
@@ -290,12 +293,21 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SpeedLabel" type="Label" parent="UI/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+
+[node name="SpeedLabel" type="Label" parent="UI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BoostLabel" type="Label" parent="UI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LapLabel" type="Label" parent="UI/HBoxContainer"]
 layout_mode = 2
 
 [node name="DriftBoostReadyLabel" type="Label" parent="UI"]
@@ -310,6 +322,7 @@ label_settings = SubResource("LabelSettings_u4jt1")
 
 [node name="DriftBoostReadyLabelTimer" type="Timer" parent="UI"]
 
+[connection signal="timeout" from="NitroTimer" to="." method="_on_nitro_timer_timeout"]
 [connection signal="timeout" from="DriftTimer" to="." method="_on_drift_timer_timeout"]
 [connection signal="timeout" from="BoostTimer" to="." method="_on_boost_timer_timeout"]
 [connection signal="timeout" from="UI/DriftBoostReadyLabelTimer" to="." method="_on_drift_boost_ready_label_timer_timeout"]
