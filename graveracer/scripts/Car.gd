@@ -1,5 +1,6 @@
 extends Node3D
 
+# References
 @onready var Ball = $Ball
 @onready var Car = $Car
 @onready var Collider = $Ball/CollisionShape3D
@@ -18,10 +19,12 @@ extends Node3D
 @onready var DriftBoostReadyLabel = $UI/DriftBoostReadyLabel
 @onready var DriftBoostReadyLabelTimer = $UI/DriftBoostReadyLabelTimer
 
+# Lap Tracking
 @onready var LapLabel = $UI/HBoxContainer/LapLabel
 @export var current_lap : int
 @export var max_laps : int
 
+# Movement
 var current_speed = 0.0
 var max_speed = 2500.0
 var acceleration_rate = 800.0
@@ -29,16 +32,19 @@ var deceleration_rate = 1200.0
 var steering = 17.0
 var turn_speed = 5
 var body_tilt = 30
-var jump_force = 300
 
+## Jump
+var jump_force = 300
 var can_jump = true
 var jump_cooldown = 0.18
 var is_on_ground = false
 var jump_forward_impulse = 120.0
 
+## Input
 var speed_input = 0
 var rotate_input = 0
 
+## Drift
 var Drifting = false
 var DriftDirection = 0
 var MinimumDrift = 0
@@ -70,6 +76,7 @@ func _physics_process(delta):
 		current_speed = move_toward(current_speed, 0, deceleration_rate * delta)
 	else:
 		current_speed = move_toward(current_speed, 0, deceleration_rate * 0.5 * delta)
+	
 	# Handle Jump
 	if Input.is_action_just_pressed("jump") and is_on_ground and can_jump:
 		# Upward impulse
@@ -125,7 +132,7 @@ func RotateCar(delta):
 		AnimatedSprite.play("turn_right")
 	else:
 		AnimatedSprite.play("idle")
-	
+		
 
 func StartDrift():
 	Drifting = true
@@ -158,3 +165,6 @@ func _on_drift_boost_ready_label_timer_timeout():
 
 func _on_nitro_timer_timeout():
 	Boost = 1
+
+func increment_lap():
+	current_lap += 1

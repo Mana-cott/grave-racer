@@ -217,7 +217,7 @@ outline_color = Color(0.16832, 0, 0.0459586, 1)
 shadow_size = 5
 shadow_color = Color(0.133863, 0.000158988, 0.219099, 0.572549)
 
-[node name="Car" type="Node3D"]
+[node name="Car" type="Node3D" groups=["player"]]
 script = ExtResource("1_v8xvp")
 
 [node name="Ball" type="RigidBody3D" parent="."]

@@ -30,7 +30,7 @@ transform = Transform3D(95.2506, 0, 0, 0, 111.628, 0, 0, 0, 87.4329, 28, 1, 6)
 
 [node name="Car" parent="." instance=ExtResource("3_qne26")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 228.266, 243.293, 111.761)
-max_laps = 99
+max_laps = 1
 
 [node name="DeathZone" type="Area3D" parent="."]
 
