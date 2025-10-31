@@ -1,0 +1,149 @@
+[gd_scene load_steps=17 format=3 uid="uid://c7bbr0i2ksllk"]
+
+[ext_resource type="Script" path="res://scenes/leaderboard_root.gd" id="1_ft6su"]
+[ext_resource type="Texture2D" uid="uid://ixun3hew50m4" path="res://assets/sprites/goosha-face-Sheet.png" id="2_gchpb"]
+[ext_resource type="Texture2D" uid="uid://b8hr0l3v6cmrs" path="res://assets/sprites/kombi-face-Sheet.png" id="3_k3atc"]
+[ext_resource type="Texture2D" uid="uid://ch6yvwxda1fng" path="res://assets/sprites/pumkin-face-Sheet.png" id="4_tr00n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2v87"]
+atlas = ExtResource("2_gchpb")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gejfk"]
+atlas = ExtResource("2_gchpb")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pgc3"]
+atlas = ExtResource("2_gchpb")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5t0m"]
+atlas = ExtResource("2_gchpb")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv1ll"]
+atlas = ExtResource("2_gchpb")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7odoc"]
+atlas = ExtResource("3_k3atc")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxweb"]
+atlas = ExtResource("3_k3atc")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvfjw"]
+atlas = ExtResource("3_k3atc")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yffsk"]
+atlas = ExtResource("4_tr00n")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r6l7"]
+atlas = ExtResource("4_tr00n")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m0vw"]
+atlas = ExtResource("4_tr00n")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tdtqg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2v87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gejfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pgc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5t0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv1ll")
+}],
+"loop": true,
+"name": &"goosha_face",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7odoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxweb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvfjw")
+}],
+"loop": true,
+"name": &"kombi_face",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yffsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6r6l7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m0vw")
+}],
+"loop": true,
+"name": &"pumkin_face",
+"speed": 6.0
+}]
+
+[node name="RacingOrder" type="CanvasLayer"]
+
+[node name="LeaderboardRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+script = ExtResource("1_ft6su")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardRoot"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeaderboardRoot/VBoxContainer"]
+layout_mode = 2
+
+[node name="Portrait" type="AnimatedSprite2D" parent="LeaderboardRoot/VBoxContainer/HBoxContainer"]
+position = Vector2(-24, 64)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_tdtqg")
+animation = &"goosha_face"
+frame_progress = 0.0716136
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="LeaderboardRoot/VBoxContainer"]
+layout_mode = 2
+
+[node name="Portrait" type="AnimatedSprite2D" parent="LeaderboardRoot/VBoxContainer/HBoxContainer2"]
+position = Vector2(-24, 316)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_tdtqg")
+animation = &"kombi_face"
+frame_progress = 0.914267
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="LeaderboardRoot/VBoxContainer"]
+layout_mode = 2
+
+[node name="Portrait" type="AnimatedSprite2D" parent="LeaderboardRoot/VBoxContainer/HBoxContainer3"]
+position = Vector2(-24, 184)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_tdtqg")
+animation = &"pumkin_face"
+frame_progress = 0.204095

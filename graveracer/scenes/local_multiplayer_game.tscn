@@ -1,0 +1,305 @@
+[gd_scene load_steps=21 format=3 uid="uid://b2j4jnjhdb428"]
+
+[ext_resource type="Script" path="res://scenes/local_multiplayer_game.gd" id="1_2kab4"]
+[ext_resource type="PackedScene" uid="uid://cr31g7eifnq4e" path="res://scenes/car.tscn" id="1_jtfrk"]
+[ext_resource type="Texture2D" uid="uid://ixun3hew50m4" path="res://assets/sprites/goosha-face-Sheet.png" id="2_abg16"]
+[ext_resource type="PackedScene" uid="uid://bk4nefqkvtve7" path="res://scenes/fall_frenzy.tscn" id="2_gguux"]
+[ext_resource type="Texture2D" uid="uid://b8hr0l3v6cmrs" path="res://assets/sprites/kombi-face-Sheet.png" id="3_7iqgu"]
+[ext_resource type="Texture2D" uid="uid://ch6yvwxda1fng" path="res://assets/sprites/pumkin-face-Sheet.png" id="4_mnx8b"]
+[ext_resource type="PackedScene" uid="uid://br3io2151skks" path="res://scenes/local_car.tscn" id="6_yj2lb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2v87"]
+atlas = ExtResource("2_abg16")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gejfk"]
+atlas = ExtResource("2_abg16")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pgc3"]
+atlas = ExtResource("2_abg16")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5t0m"]
+atlas = ExtResource("2_abg16")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv1ll"]
+atlas = ExtResource("2_abg16")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7odoc"]
+atlas = ExtResource("3_7iqgu")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxweb"]
+atlas = ExtResource("3_7iqgu")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvfjw"]
+atlas = ExtResource("3_7iqgu")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yffsk"]
+atlas = ExtResource("4_mnx8b")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r6l7"]
+atlas = ExtResource("4_mnx8b")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m0vw"]
+atlas = ExtResource("4_mnx8b")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_42a7d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2v87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gejfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pgc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5t0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv1ll")
+}],
+"loop": true,
+"name": &"goosha_face",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7odoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxweb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvfjw")
+}],
+"loop": true,
+"name": &"kombi_face",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yffsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6r6l7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m0vw")
+}],
+"loop": true,
+"name": &"pumkin_face",
+"speed": 6.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sxpag"]
+font_size = 62
+font_color = Color(1, 0.392157, 0, 1)
+outline_size = 3
+outline_color = Color(0.16832, 0, 0.0459586, 1)
+shadow_size = 5
+shadow_color = Color(0.133863, 0.000158988, 0.219099, 0.572549)
+
+[node name="LocalMultiplayerGame" type="Node3D"]
+script = ExtResource("1_2kab4")
+chosen_level_scene = ExtResource("2_gguux")
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(574, 648)
+render_target_update_mode = 4
+
+[node name="Car" parent="GridContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_jtfrk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 228.266, 243.293, 111.761)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GridContainer/SubViewportContainer/SubViewport"]
+follow_viewport_enabled = true
+
+[node name="CharacterPortraitRoot" type="Control" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer/CharacterPortraitRoot"]
+position = Vector2(-24, 65)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_42a7d")
+animation = &"pumkin_face"
+
+[node name="LapRoot" type="Control" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="LapLabel" type="Label" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer/LapRoot"]
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="StopwatchRoot" type="Control" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="StopwatchLabel" type="Label" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer/StopwatchRoot"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DriftBoostRoot" type="Control" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="DriftBoostReadyLabel" type="Label" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer/DriftBoostRoot"]
+visible = false
+layout_mode = 0
+offset_left = 251.0
+offset_top = 285.0
+offset_right = 946.0
+offset_bottom = 383.0
+text = "DRIFT BOOST READY!!!!!"
+label_settings = SubResource("LabelSettings_sxpag")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DriftBoostReadyLabelTimer" type="Timer" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer/DriftBoostRoot"]
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
+handle_input_locally = false
+size = Vector2i(574, 648)
+render_target_update_mode = 4
+
+[node name="LocalCar" parent="GridContainer/SubViewportContainer2/SubViewport" instance=ExtResource("6_yj2lb")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GridContainer/SubViewportContainer2/SubViewport"]
+follow_viewport_enabled = true
+
+[node name="CharacterPortraitRoot" type="Control" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer/CharacterPortraitRoot"]
+position = Vector2(-24, 65)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_42a7d")
+animation = &"pumkin_face"
+
+[node name="LapRoot" type="Control" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="LapLabel" type="Label" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer/LapRoot"]
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="StopwatchRoot" type="Control" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="StopwatchLabel" type="Label" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer/StopwatchRoot"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DriftBoostRoot" type="Control" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="DriftBoostReadyLabel" type="Label" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer/DriftBoostRoot"]
+visible = false
+layout_mode = 0
+offset_left = 251.0
+offset_top = 285.0
+offset_right = 946.0
+offset_bottom = 383.0
+text = "DRIFT BOOST READY!!!!!"
+label_settings = SubResource("LabelSettings_sxpag")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DriftBoostReadyLabelTimer" type="Timer" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer/DriftBoostRoot"]

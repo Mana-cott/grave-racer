@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://l8ihocowp05n"]
+
+[node name="Portrait" type="TextureRect"]
+
+[node name="PlayerName" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

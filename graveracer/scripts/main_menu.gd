@@ -12,12 +12,15 @@ func _process(delta):
 
 
 func _on_multiplayer_game_button_pressed():
-	pass # Replace with function body.
-
+	get_tree().change_scene_to_file("res://scenes/character_select.tscn")
 
 func _on_practice_game_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/practice_game.tscn")
-
+	get_tree().change_scene_to_file("res://scenes/character_select.tscn")
 
 func _on_quit_button_pressed():
-	pass # Replace with function body.
+	get_tree().quit()
+
+
+func _on_local_multiplayer_pressed():
+	Global.local_multiplayer = true
+	get_tree().change_scene_to_file("res://scenes/character_select.tscn")

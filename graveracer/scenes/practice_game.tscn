@@ -1,42 +1,192 @@
-[gd_scene load_steps=8 format=3 uid="uid://pe1vt6d1572i"]
+[gd_scene load_steps=20 format=3 uid="uid://pe1vt6d1572i"]
 
 [ext_resource type="Script" path="res://scripts/practice_game.gd" id="1_gvwwr"]
-[ext_resource type="PackedScene" uid="uid://cdorf763q4wty" path="res://scenes/racetrack.tscn" id="1_vitvi"]
-[ext_resource type="PackedScene" uid="uid://biau26idnr45o" path="res://assets/models/PSX_BoneSkull.fbx" id="2_8r6ki"]
-[ext_resource type="PackedScene" uid="uid://cr31g7eifnq4e" path="res://car.tscn" id="3_qne26"]
-[ext_resource type="PackedScene" uid="uid://ci5oswoqk0wn" path="res://scenes/finish_line.tscn" id="5_0xyly"]
+[ext_resource type="PackedScene" uid="uid://bk4nefqkvtve7" path="res://scenes/fall_frenzy.tscn" id="2_ppo1e"]
+[ext_resource type="PackedScene" uid="uid://cr31g7eifnq4e" path="res://scenes/car.tscn" id="3_qne26"]
+[ext_resource type="Texture2D" uid="uid://ixun3hew50m4" path="res://assets/sprites/goosha-face-Sheet.png" id="4_hggjs"]
+[ext_resource type="Texture2D" uid="uid://b8hr0l3v6cmrs" path="res://assets/sprites/kombi-face-Sheet.png" id="5_1cr2p"]
+[ext_resource type="Texture2D" uid="uid://ch6yvwxda1fng" path="res://assets/sprites/pumkin-face-Sheet.png" id="6_lgckl"]
 
-[sub_resource type="Environment" id="Environment_gkjbp"]
-ambient_light_source = 3
-ambient_light_color = Color(1, 1, 1, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2v87"]
+atlas = ExtResource("4_hggjs")
+region = Rect2(0, 0, 256, 256)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xu4if"]
-size = Vector3(1450.36, 190, 2185.5)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gejfk"]
+atlas = ExtResource("4_hggjs")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pgc3"]
+atlas = ExtResource("4_hggjs")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5t0m"]
+atlas = ExtResource("4_hggjs")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv1ll"]
+atlas = ExtResource("4_hggjs")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7odoc"]
+atlas = ExtResource("5_1cr2p")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxweb"]
+atlas = ExtResource("5_1cr2p")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvfjw"]
+atlas = ExtResource("5_1cr2p")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yffsk"]
+atlas = ExtResource("6_lgckl")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r6l7"]
+atlas = ExtResource("6_lgckl")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7m0vw"]
+atlas = ExtResource("6_lgckl")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_two70"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2v87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gejfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pgc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5t0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv1ll")
+}],
+"loop": true,
+"name": &"goosha_face",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7odoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxweb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvfjw")
+}],
+"loop": true,
+"name": &"kombi_face",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yffsk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6r6l7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7m0vw")
+}],
+"loop": true,
+"name": &"pumkin_face",
+"speed": 6.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_10wwm"]
+font_size = 62
+font_color = Color(1, 0.392157, 0, 1)
+outline_size = 3
+outline_color = Color(0.16832, 0, 0.0459586, 1)
+shadow_size = 5
+shadow_color = Color(0.133863, 0.000158988, 0.219099, 0.572549)
 
 [node name="PracticeGame" type="Node3D"]
 script = ExtResource("1_gvwwr")
-
-[node name="Racetrack" parent="." instance=ExtResource("1_vitvi")]
-transform = Transform3D(16, 0, 0, 0, 9.031, 0, 0, 0, 16.347, 0, 22.8317, 0)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_gkjbp")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 17, 0)
-
-[node name="PSX_BoneSkull" parent="." instance=ExtResource("2_8r6ki")]
-transform = Transform3D(95.2506, 0, 0, 0, 111.628, 0, 0, 0, 87.4329, 28, 1, 6)
+chosen_level_scene = ExtResource("2_ppo1e")
 
 [node name="Car" parent="." instance=ExtResource("3_qne26")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 228.266, 243.293, 111.761)
-max_laps = 1
 
-[node name="DeathZone" type="Area3D" parent="."]
+[node name="Level" type="Node3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -203.997, 94.5, -644.846)
-shape = SubResource("BoxShape3D_xu4if")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
-[node name="FinishLine" parent="." instance=ExtResource("5_0xyly")]
-transform = Transform3D(13.8155, 0, 0, 0, 13.8155, 0, 0, 0, 13.8155, -485.933, 238.842, -55.7125)
+[node name="CharacterPortraitRoot" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/CharacterPortraitRoot"]
+position = Vector2(-24, 65)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_two70")
+animation = &"pumkin_face"
+
+[node name="LapRoot" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="LapLabel" type="Label" parent="CanvasLayer/LapRoot"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="StopwatchRoot" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="StopwatchLabel" type="Label" parent="CanvasLayer/StopwatchRoot"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DriftBoostRoot" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="DriftBoostReadyLabel" type="Label" parent="CanvasLayer/DriftBoostRoot"]
+visible = false
+layout_mode = 0
+offset_left = 251.0
+offset_top = 285.0
+offset_right = 946.0
+offset_bottom = 383.0
+text = "DRIFT BOOST READY!!!!!"
+label_settings = SubResource("LabelSettings_10wwm")
+
+[node name="DriftBoostReadyLabelTimer" type="Timer" parent="CanvasLayer/DriftBoostRoot"]
+
+[connection signal="timeout" from="CanvasLayer/DriftBoostRoot/DriftBoostReadyLabelTimer" to="Car" method="_on_drift_boost_ready_label_timer_timeout"]

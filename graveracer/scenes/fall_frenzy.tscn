@@ -1,0 +1,132 @@
+[gd_scene load_steps=15 format=3 uid="uid://bk4nefqkvtve7"]
+
+[ext_resource type="PackedScene" uid="uid://cdorf763q4wty" path="res://scenes/racetrack.tscn" id="1_3bepp"]
+[ext_resource type="Script" path="res://scenes/fall_frenzy.gd" id="1_m333r"]
+[ext_resource type="PackedScene" uid="uid://cr31g7eifnq4e" path="res://scenes/car.tscn" id="2_48pit"]
+[ext_resource type="Texture2D" uid="uid://n1nr1nmf2k0n" path="res://assets/textures/PurplyBlueSky.png" id="2_nqin6"]
+[ext_resource type="PackedScene" uid="uid://biau26idnr45o" path="res://assets/models/PSX_BoneSkull.fbx" id="3_ckv6x"]
+[ext_resource type="PackedScene" uid="uid://ci5oswoqk0wn" path="res://scenes/finish_line.tscn" id="4_cxdxv"]
+[ext_resource type="Texture2D" uid="uid://calfjms7vjhqy" path="res://assets/textures/pumpkintx_slime.jpg" id="7_lfyc6"]
+
+[sub_resource type="Shader" id="Shader_50bwf"]
+code = "
+// NOTE: Shader automatically converted from Godot Engine 4.3.stable's PanoramaSkyMaterial.
+
+shader_type sky;
+
+uniform sampler2D source_panorama : filter_linear, source_color, hint_default_black;
+uniform float exposure : hint_range(0, 128) = 1.0;
+uniform float speed = 0.002;
+
+void sky() {
+	vec2 skyCoords = vec2(SKY_COORDS.x * TIME * speed, SKY_COORDS.y);
+	COLOR = texture(source_panorama, SKY_COORDS).rgb * exposure;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t18la"]
+shader = SubResource("Shader_50bwf")
+shader_parameter/exposure = 1.0
+shader_parameter/speed = 0.02
+shader_parameter/source_panorama = ExtResource("2_nqin6")
+
+[sub_resource type="Sky" id="Sky_1dkj2"]
+sky_material = SubResource("ShaderMaterial_t18la")
+
+[sub_resource type="Environment" id="Environment_7aklu"]
+background_mode = 2
+sky = SubResource("Sky_1dkj2")
+ambient_light_source = 3
+ambient_light_color = Color(0.991108, 0.18561, 0.59292, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6watm"]
+size = Vector3(1450.36, 190, 2185.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nd0dl"]
+albedo_texture = ExtResource("7_lfyc6")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g85pn"]
+size = Vector3(12.3354, 16.9131, 44)
+
+[node name="FallFrenzy" type="Node3D"]
+script = ExtResource("1_m333r")
+car = ExtResource("2_48pit")
+
+[node name="Racetrack" parent="." instance=ExtResource("1_3bepp")]
+transform = Transform3D(16, 0, 0, 0, 9.031, 0, 0, 0, 16.347, 0, 22.8317, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7aklu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 17, 0)
+
+[node name="DeathZone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -203.997, 94.5, -644.846)
+shape = SubResource("BoxShape3D_6watm")
+
+[node name="FinishLine" parent="." instance=ExtResource("4_cxdxv")]
+transform = Transform3D(13.8155, 0, 0, 0, 13.8155, 0, 0, 0, 13.8155, -485.933, 238.842, -55.7125)
+
+[node name="tree1" type="Node3D" parent="."]
+
+[node name="trunk" type="CSGCylinder3D" parent="tree1"]
+transform = Transform3D(0.978268, 0, 0, 0, 0.978268, 0, 0, 0, 0.978268, -89.2035, 74.0081, 0)
+use_collision = true
+radius = 127.83
+height = 2070.79
+material = SubResource("StandardMaterial3D_nd0dl")
+
+[node name="branch" type="CSGCylinder3D" parent="tree1"]
+transform = Transform3D(0.436472, -0.516129, 0.707184, 0.746976, 0.631691, 0, -0.456646, 0.539985, 0.675942, -203.446, 555.23, 91.8219)
+use_collision = true
+radius = 75.0
+height = 449.201
+material = SubResource("StandardMaterial3D_nd0dl")
+
+[node name="tree2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 178.932, 297.793, -456.573)
+
+[node name="trunk" type="CSGCylinder3D" parent="tree2"]
+transform = Transform3D(0.978268, 0, 0, 0, 0.978268, 0, 0, 0, 0.978268, -219.572, -106.691, -537.565)
+use_collision = true
+radius = 145.077
+height = 2305.45
+material = SubResource("StandardMaterial3D_nd0dl")
+
+[node name="branch" type="CSGCylinder3D" parent="tree2"]
+transform = Transform3D(0.436472, -0.516129, 0.707184, 0.746976, 0.631691, 0, -0.456646, 0.539985, 0.675942, -365.546, 555.23, -499.285)
+use_collision = true
+radius = 75.0
+height = 449.201
+material = SubResource("StandardMaterial3D_nd0dl")
+
+[node name="branch2" type="CSGCylinder3D" parent="tree2"]
+transform = Transform3D(0.42421, -0.790406, -0.390271, 0.846871, 0.485637, -0.0630311, 0.244667, -0.310519, 0.894831, -336.542, 75.5113, -627.445)
+use_collision = true
+radius = 75.0
+height = 449.201
+material = SubResource("StandardMaterial3D_nd0dl")
+
+[node name="SkullRamp" type="StaticBody3D" parent="."]
+
+[node name="PSX_BoneSkull" parent="SkullRamp" instance=ExtResource("3_ckv6x")]
+transform = Transform3D(95.2506, 0, 0, 0, 94.2292, 44.7416, 0, -110.57, 38.1293, -466.16, 234.831, -259)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SkullRamp"]
+transform = Transform3D(0.999946, 0.00613807, 0.00836471, 0.000485316, 0.777669, -0.628674, -0.0103638, 0.628644, 0.777624, -466.232, 234.98, -261.015)
+shape = SubResource("BoxShape3D_g85pn")
+
+[node name="SkullRamp2" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.772401, 0, -0.635135, 0, 1, 0, 0.635135, 0, -0.772401, -780.229, 38.4252, -462.98)
+
+[node name="PSX_BoneSkull" parent="SkullRamp2" instance=ExtResource("3_ckv6x")]
+transform = Transform3D(95.2506, 0, 0, 0, 94.2292, 44.7416, 0, -110.57, 38.1293, -466.16, 234.831, -259)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SkullRamp2"]
+transform = Transform3D(0.999946, 0.00613807, 0.00836471, 0.000485316, 0.777669, -0.628674, -0.0103638, 0.628644, 0.777624, -466.232, 234.98, -261.015)
+shape = SubResource("BoxShape3D_g85pn")
+
+[connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]

@@ -1,24 +1,186 @@
-[gd_scene format=3 uid="uid://drk5ek55sdq0t"]
+[gd_scene load_steps=18 format=3 uid="uid://drk5ek55sdq0t"]
 
-[node name="CharacterSelect" type="Control"]
+[ext_resource type="Script" path="res://scenes/character_select_root.gd" id="1_s8mhm"]
+[ext_resource type="Texture2D" uid="uid://ixun3hew50m4" path="res://assets/sprites/goosha-face-Sheet.png" id="1_sfpcq"]
+[ext_resource type="Texture2D" uid="uid://ch6yvwxda1fng" path="res://assets/sprites/pumkin-face-Sheet.png" id="2_8o7km"]
+[ext_resource type="Texture2D" uid="uid://b8hr0l3v6cmrs" path="res://assets/sprites/kombi-face-Sheet.png" id="3_db8nr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d46o"]
+atlas = ExtResource("1_sfpcq")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3sle"]
+atlas = ExtResource("1_sfpcq")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f4wp"]
+atlas = ExtResource("1_sfpcq")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4ppg"]
+atlas = ExtResource("1_sfpcq")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_687rh"]
+atlas = ExtResource("1_sfpcq")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlx0a"]
+atlas = ExtResource("2_8o7km")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu3lt"]
+atlas = ExtResource("2_8o7km")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0u8xt"]
+atlas = ExtResource("2_8o7km")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w6r63"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d46o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3sle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f4wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4ppg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_687rh")
+}],
+"loop": true,
+"name": &"goosha_select",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlx0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu3lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0u8xt")
+}],
+"loop": true,
+"name": &"pumkin_select",
+"speed": 6.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq37i"]
+atlas = ExtResource("3_db8nr")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7he63"]
+atlas = ExtResource("3_db8nr")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5nbc"]
+atlas = ExtResource("3_db8nr")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6wsmp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq37i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7he63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5nbc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterSelect" type="CanvasLayer"]
+
+[node name="CharacterSelectRoot" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s8mhm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterSelectRoot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.5
+offset_top = -29.0
+offset_right = 100.5
+offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 0
-offset_right = 1156.0
-offset_bottom = 647.0
-columns = 2
-
-[node name="GhoulButton" type="Button" parent="GridContainer"]
+[node name="SelectCharacterLabel" type="Label" parent="CharacterSelectRoot/VBoxContainer"]
 layout_mode = 2
-text = "Ghoul
-"
+text = "SELECT CHARACTER"
+horizontal_alignment = 1
 
-[node name="SkeleboyButton" type="Button" parent="GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterSelectRoot/VBoxContainer"]
 layout_mode = 2
-text = "Skeleboy"
+
+[node name="PumkinContainer" type="VBoxContainer" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/PumkinContainer"]
+position = Vector2(24.5, 64)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_w6r63")
+animation = &"pumkin_select"
+frame_progress = 0.583824
+
+[node name="PumkinButton" type="Button" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/PumkinContainer"]
+layout_mode = 2
+text = "Pumkin"
+
+[node name="GooshaContainer" type="VBoxContainer" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/GooshaContainer"]
+position = Vector2(40.5, 64)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_w6r63")
+animation = &"goosha_select"
+
+[node name="GooshaButton" type="Button" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/GooshaContainer"]
+layout_mode = 2
+text = "Goosha"
+
+[node name="KombiContainer" type="VBoxContainer" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/KombiContainer"]
+position = Vector2(41.5, 64)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_6wsmp")
+
+[node name="KombiButton" type="Button" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/KombiContainer"]
+layout_mode = 2
+text = "Kombi"
+
+[connection signal="pressed" from="CharacterSelectRoot/VBoxContainer/HBoxContainer/PumkinContainer/PumkinButton" to="CharacterSelectRoot" method="_on_pumkin_button_pressed"]
+[connection signal="pressed" from="CharacterSelectRoot/VBoxContainer/HBoxContainer/GooshaContainer/GooshaButton" to="CharacterSelectRoot" method="_on_goosha_button_pressed"]
+[connection signal="pressed" from="CharacterSelectRoot/VBoxContainer/HBoxContainer/KombiContainer/KombiButton" to="CharacterSelectRoot" method="_on_kombi_button_pressed"]

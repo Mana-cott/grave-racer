@@ -1,15 +1,42 @@
 extends Node3D
 
-@onready var player_start_pos = $FinishLine/StartPosition
 @onready var player1 = $Car
-@onready var finish_line = $FinishLine
+@onready var character_portrait = $CanvasLayer/CharacterPortraitRoot/AnimatedSprite2D
+@onready var stopwatch_label = $CanvasLayer/StopwatchRoot/StopwatchLabel
 
+@export var chosen_level_scene : PackedScene
+
+var level_instance : Node3D
+var finish_line : Node3D
+var player_start_pos : Marker3D
 var has_winner = false
+var time_elapsed = 0.0
 
 func _ready():
-	player1.global_transform = player_start_pos.global_transform
-	finish_line.player_crossed.connect(_on_player_crossed_finish_line)
+	player1.character_name = Global.chosen_character
+	player1.max_laps = 3
+	player1.LapLabel = $CanvasLayer/LapRoot/LapLabel
+	player1.DriftBoostReadyLabel = $CanvasLayer/DriftBoostRoot/DriftBoostReadyLabel
+	player1.DriftBoostReadyLabelTimer = $CanvasLayer/DriftBoostRoot/DriftBoostReadyLabelTimer
+	character_portrait.play("%s_face" % player1.character_name)
+	if chosen_level_scene:
+		level_instance = chosen_level_scene.instantiate()
+		add_child(level_instance)
+	else:
+		return
+	player_start_pos = level_instance.get_node("FinishLine/SpawnPositions/SP1")
+	finish_line = level_instance.get_node("FinishLine")
+	if player_start_pos and is_instance_valid(player1):
+		player1.global_transform = player_start_pos.global_transform
+	if finish_line:
+		if finish_line.has_signal("player_crossed"):
+			finish_line.player_crossed.connect(_on_player_crossed_finish_line)
+
+func _process(delta: float) -> void:
+	time_elapsed += delta
+	stopwatch_label.text = "%0.2f" % time_elapsed 
 	
+
 func _on_player_crossed_finish_line(player_node : Node3D):
 	if not is_instance_valid(player_node):
 		return

@@ -84,16 +84,16 @@ func _physics_process(delta):
 	
 	# Handle acceleration
 	var target_speed = 0.0
-	if Input.get_action_strength("accelerate") > 0:
+	if Input.get_action_strength("local_accelerate") > 0:
 		target_speed = max_speed * Boost
 		current_speed = move_toward(current_speed, target_speed, acceleration_rate * delta)
-	elif Input.get_action_strength("brake") > 0:
+	elif Input.get_action_strength("local_brake") > 0:
 		current_speed = move_toward(current_speed, 0, deceleration_rate * delta)
 	else:
 		current_speed = move_toward(current_speed, 0, deceleration_rate * 0.5 * delta)
 	
 	# Handle Jump
-	if Input.is_action_just_pressed("jump") and is_on_ground and can_jump:
+	if Input.is_action_just_pressed("local_jump") and is_on_ground and can_jump:
 		# Upward impulse
 		Ball.apply_central_impulse(Vector3.UP * jump_force)
 		Ball.apply_central_impulse(-Car.global_transform.basis.z * jump_forward_impulse)
@@ -108,24 +108,24 @@ func _physics_process(delta):
 
 func _process(delta):
 	speed_input = current_speed  # Update speed_input for UI and other functions
-	rotate_input = deg_to_rad(steering) * (Input.get_action_strength("steer_left") - Input.get_action_strength("steer_right"))
+	rotate_input = deg_to_rad(steering) * (Input.get_action_strength("local_steer_left") - Input.get_action_strength("local_steer_right"))
 	RightWheel.rotation.y = rotate_input
 	LeftWheel.rotation.y = rotate_input
 	
-	if Input.is_action_pressed("nitro"):
+	if Input.is_action_pressed("local_nitro"):
 		Boost = NitroBoost
 		NitroTimer.start()
 	
-	if Input.is_action_just_pressed("brake") and not Drifting and rotate_input != 0 and speed_input > 0:
+	if Input.is_action_just_pressed("local_brake") and not Drifting and rotate_input != 0 and speed_input > 0:
 		StartDrift()
 	
 	if Drifting:
 		var DriftAmount = 0
-		DriftAmount += Input.get_action_strength("steer_left") - Input.get_action_strength("steer_right")
+		DriftAmount += Input.get_action_strength("local_steer_left") - Input.get_action_strength("local_steer_right")
 		DriftAmount *= deg_to_rad(steering*0.55)
 		rotate_input = DriftDirection + DriftAmount
 		
-	if Drifting and (Input.is_action_just_released("brake") or speed_input < 1):
+	if Drifting and (Input.is_action_just_released("local_brake") or speed_input < 1):
 		StopDrift()
 	
 	if Ball.linear_velocity.length() > 0.75:
