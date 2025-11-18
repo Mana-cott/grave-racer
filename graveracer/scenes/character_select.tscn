@@ -1,107 +1,25 @@
-[gd_scene load_steps=18 format=3 uid="uid://drk5ek55sdq0t"]
+[gd_scene load_steps=9 format=3 uid="uid://drk5ek55sdq0t"]
 
 [ext_resource type="Script" path="res://scenes/character_select_root.gd" id="1_s8mhm"]
-[ext_resource type="Texture2D" uid="uid://ixun3hew50m4" path="res://assets/sprites/goosha-face-Sheet.png" id="1_sfpcq"]
-[ext_resource type="Texture2D" uid="uid://ch6yvwxda1fng" path="res://assets/sprites/pumkin-face-Sheet.png" id="2_8o7km"]
-[ext_resource type="Texture2D" uid="uid://b8hr0l3v6cmrs" path="res://assets/sprites/kombi-face-Sheet.png" id="3_db8nr"]
+[ext_resource type="Texture2D" uid="uid://calfjms7vjhqy" path="res://assets/textures/pumpkintx_slime.jpg" id="2_a44il"]
+[ext_resource type="FontFile" uid="uid://drctn4e0xawrg" path="res://assets/fonts/NIGHTMARE.ttf" id="2_ohptm"]
+[ext_resource type="Texture2D" uid="uid://njrg1luw8sva" path="res://assets/sprites/kombi_select.png" id="4_fj2f0"]
+[ext_resource type="Texture2D" uid="uid://dkan1x81hbsq7" path="res://assets/sprites/pumkin_select.png" id="4_nxm55"]
+[ext_resource type="Texture2D" uid="uid://dk17joo7qislq" path="res://assets/sprites/goosha_select.png" id="5_w6xkm"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3d46o"]
-atlas = ExtResource("1_sfpcq")
-region = Rect2(0, 0, 256, 256)
+[sub_resource type="LabelSettings" id="LabelSettings_isb0x"]
+font_size = 12
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e3sle"]
-atlas = ExtResource("1_sfpcq")
-region = Rect2(256, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6f4wp"]
-atlas = ExtResource("1_sfpcq")
-region = Rect2(512, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n4ppg"]
-atlas = ExtResource("1_sfpcq")
-region = Rect2(768, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_687rh"]
-atlas = ExtResource("1_sfpcq")
-region = Rect2(1024, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mlx0a"]
-atlas = ExtResource("2_8o7km")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pu3lt"]
-atlas = ExtResource("2_8o7km")
-region = Rect2(256, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0u8xt"]
-atlas = ExtResource("2_8o7km")
-region = Rect2(512, 0, 256, 256)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_w6r63"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3d46o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e3sle")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6f4wp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n4ppg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_687rh")
-}],
-"loop": true,
-"name": &"goosha_select",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mlx0a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pu3lt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0u8xt")
-}],
-"loop": true,
-"name": &"pumkin_select",
-"speed": 6.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sq37i"]
-atlas = ExtResource("3_db8nr")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7he63"]
-atlas = ExtResource("3_db8nr")
-region = Rect2(256, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o5nbc"]
-atlas = ExtResource("3_db8nr")
-region = Rect2(512, 0, 256, 256)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6wsmp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sq37i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7he63")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o5nbc")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="LabelSettings" id="LabelSettings_tthrs"]
+font = ExtResource("2_ohptm")
+font_size = 100
+font_color = Color(0.710603, 0.552178, 0.999615, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.8)
 
 [node name="CharacterSelect" type="CanvasLayer"]
 
@@ -120,6 +38,27 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s8mhm")
 
+[node name="TextureRect" type="TextureRect" parent="CharacterSelectRoot"]
+layout_mode = 0
+offset_left = -563.0
+offset_top = -310.0
+offset_right = -145.0
+offset_bottom = 108.0
+scale = Vector2(0.577104, 0.344027)
+texture = ExtResource("2_a44il")
+
+[node name="GameInstructions" type="Label" parent="CharacterSelectRoot"]
+layout_mode = 0
+offset_left = -395.0
+offset_top = -302.0
+offset_right = -25.0
+offset_bottom = -275.0
+scale = Vector2(2.22422, 2.50221)
+text = "
+"
+label_settings = SubResource("LabelSettings_isb0x")
+horizontal_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CharacterSelectRoot"]
 layout_mode = 1
 anchors_preset = 8
@@ -137,49 +76,35 @@ grow_vertical = 2
 [node name="SelectCharacterLabel" type="Label" parent="CharacterSelectRoot/VBoxContainer"]
 layout_mode = 2
 text = "SELECT CHARACTER"
+label_settings = SubResource("LabelSettings_tthrs")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CharacterSelectRoot/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.65
+alignment = 1
 
 [node name="PumkinContainer" type="VBoxContainer" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/PumkinContainer"]
-position = Vector2(24.5, 64)
-scale = Vector2(0.25, 0.25)
-sprite_frames = SubResource("SpriteFrames_w6r63")
-animation = &"pumkin_select"
-frame_progress = 0.583824
-
 [node name="PumkinButton" type="Button" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/PumkinContainer"]
 layout_mode = 2
-text = "Pumkin"
+icon = ExtResource("4_nxm55")
 
 [node name="GooshaContainer" type="VBoxContainer" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/GooshaContainer"]
-position = Vector2(40.5, 64)
-scale = Vector2(0.25, 0.25)
-sprite_frames = SubResource("SpriteFrames_w6r63")
-animation = &"goosha_select"
-
 [node name="GooshaButton" type="Button" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/GooshaContainer"]
 layout_mode = 2
-text = "Goosha"
+icon = ExtResource("5_w6xkm")
 
 [node name="KombiContainer" type="VBoxContainer" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/KombiContainer"]
-position = Vector2(41.5, 64)
-scale = Vector2(0.25, 0.25)
-sprite_frames = SubResource("SpriteFrames_6wsmp")
-
 [node name="KombiButton" type="Button" parent="CharacterSelectRoot/VBoxContainer/HBoxContainer/KombiContainer"]
 layout_mode = 2
-text = "Kombi"
+icon = ExtResource("4_fj2f0")
 
 [connection signal="pressed" from="CharacterSelectRoot/VBoxContainer/HBoxContainer/PumkinContainer/PumkinButton" to="CharacterSelectRoot" method="_on_pumkin_button_pressed"]
 [connection signal="pressed" from="CharacterSelectRoot/VBoxContainer/HBoxContainer/GooshaContainer/GooshaButton" to="CharacterSelectRoot" method="_on_goosha_button_pressed"]

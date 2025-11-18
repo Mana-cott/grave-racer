@@ -1,16 +1,20 @@
 extends Control
 
 var first_chosen = false
+@onready var game_instructions = $GameInstructions
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if Global.local_multiplayer:
+		game_instructions.text = "Player 1 select then player 2 to start game\nPlayer 1: Gamepad (Required), R2 Drift, L2 Brake, Triangle Boost\nPlayer 2: Keyboard Arrows, Left Ctrl Drift"
+	else:
+		game_instructions.text = "Gamepad: R2 Drift, L2 Brake, Triangle Boost\nKeyboard: WASD, Left Shift Drift, "
+		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
 
 func _on_pumkin_button_pressed():
 	if Global.local_multiplayer:

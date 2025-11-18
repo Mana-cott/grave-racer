@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b2j4jnjhdb428"]
+[gd_scene load_steps=26 format=3 uid="uid://b2j4jnjhdb428"]
 
 [ext_resource type="Script" path="res://scenes/local_multiplayer_game.gd" id="1_2kab4"]
 [ext_resource type="PackedScene" uid="uid://cr31g7eifnq4e" path="res://scenes/car.tscn" id="1_jtfrk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b8hr0l3v6cmrs" path="res://assets/sprites/kombi-face-Sheet.png" id="3_7iqgu"]
 [ext_resource type="Texture2D" uid="uid://ch6yvwxda1fng" path="res://assets/sprites/pumkin-face-Sheet.png" id="4_mnx8b"]
 [ext_resource type="PackedScene" uid="uid://br3io2151skks" path="res://scenes/local_car.tscn" id="6_yj2lb"]
+[ext_resource type="FontFile" uid="uid://drctn4e0xawrg" path="res://assets/fonts/NIGHTMARE.ttf" id="7_yqj87"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2v87"]
 atlas = ExtResource("2_abg16")
@@ -103,13 +104,46 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_wax4m"]
+font = ExtResource("7_yqj87")
+font_size = 25
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.631373)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gf0fe"]
+font = ExtResource("7_yqj87")
+font_size = 25
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.631373)
+
 [sub_resource type="LabelSettings" id="LabelSettings_sxpag"]
+font = ExtResource("7_yqj87")
 font_size = 62
 font_color = Color(1, 0.392157, 0, 1)
 outline_size = 3
 outline_color = Color(0.16832, 0, 0.0459586, 1)
 shadow_size = 5
 shadow_color = Color(0.133863, 0.000158988, 0.219099, 0.572549)
+
+[sub_resource type="LabelSettings" id="LabelSettings_47ulw"]
+font = ExtResource("7_yqj87")
+font_size = 25
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.631373)
+
+[sub_resource type="LabelSettings" id="LabelSettings_reiyx"]
+font = ExtResource("7_yqj87")
+font_size = 25
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.631373)
 
 [node name="LocalMultiplayerGame" type="Node3D"]
 script = ExtResource("1_2kab4")
@@ -137,7 +171,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(574, 648)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="Car" parent="GridContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_jtfrk")]
@@ -173,6 +207,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_wax4m")
 metadata/_edit_use_anchors_ = true
 
 [node name="StopwatchRoot" type="Control" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer"]
@@ -190,6 +225,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_gf0fe")
 metadata/_edit_use_anchors_ = true
 
 [node name="DriftBoostRoot" type="Control" parent="GridContainer/SubViewportContainer/SubViewport/CanvasLayer"]
@@ -225,7 +261,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="GridContainer/SubViewportContainer2"]
 handle_input_locally = false
-size = Vector2i(574, 648)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="LocalCar" parent="GridContainer/SubViewportContainer2/SubViewport" instance=ExtResource("6_yj2lb")]
@@ -260,6 +296,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_47ulw")
 metadata/_edit_use_anchors_ = true
 
 [node name="StopwatchRoot" type="Control" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer"]
@@ -277,6 +314,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_reiyx")
 metadata/_edit_use_anchors_ = true
 
 [node name="DriftBoostRoot" type="Control" parent="GridContainer/SubViewportContainer2/SubViewport/CanvasLayer"]

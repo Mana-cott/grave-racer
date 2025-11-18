@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://pe1vt6d1572i"]
+[gd_scene load_steps=22 format=3 uid="uid://pe1vt6d1572i"]
 
 [ext_resource type="Script" path="res://scripts/practice_game.gd" id="1_gvwwr"]
 [ext_resource type="PackedScene" uid="uid://bk4nefqkvtve7" path="res://scenes/fall_frenzy.tscn" id="2_ppo1e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ixun3hew50m4" path="res://assets/sprites/goosha-face-Sheet.png" id="4_hggjs"]
 [ext_resource type="Texture2D" uid="uid://b8hr0l3v6cmrs" path="res://assets/sprites/kombi-face-Sheet.png" id="5_1cr2p"]
 [ext_resource type="Texture2D" uid="uid://ch6yvwxda1fng" path="res://assets/sprites/pumkin-face-Sheet.png" id="6_lgckl"]
+[ext_resource type="FontFile" uid="uid://drctn4e0xawrg" path="res://assets/fonts/NIGHTMARE.ttf" id="7_0pwl6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2v87"]
 atlas = ExtResource("4_hggjs")
@@ -102,7 +103,16 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_e2jeu"]
+font = ExtResource("7_0pwl6")
+font_size = 25
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.631373)
+
 [sub_resource type="LabelSettings" id="LabelSettings_10wwm"]
+font = ExtResource("7_0pwl6")
 font_size = 62
 font_color = Color(1, 0.392157, 0, 1)
 outline_size = 3
@@ -149,6 +159,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_e2jeu")
 metadata/_edit_use_anchors_ = true
 
 [node name="StopwatchRoot" type="Control" parent="CanvasLayer"]
@@ -166,6 +177,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_e2jeu")
 metadata/_edit_use_anchors_ = true
 
 [node name="DriftBoostRoot" type="Control" parent="CanvasLayer"]

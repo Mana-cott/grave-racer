@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdorf763q4wty"]
+[gd_scene load_steps=7 format=3 uid="uid://cdorf763q4wty"]
 
 [ext_resource type="Texture2D" uid="uid://b6ekbui20jxom" path="res://assets/textures/fall_leaves.jpg" id="1_6r3uv"]
 [ext_resource type="Texture2D" uid="uid://cscdihfi2f12f" path="res://assets/textures/road.png" id="1_vj5io"]
+[ext_resource type="Texture2D" uid="uid://calfjms7vjhqy" path="res://assets/textures/pumpkintx_slime.jpg" id="3_266yw"]
 
 [sub_resource type="Curve3D" id="Curve3D_qb5a4"]
 _data = {
@@ -15,6 +16,9 @@ render_priority = 1
 albedo_texture = ExtResource("1_vj5io")
 metallic_texture = ExtResource("1_6r3uv")
 uv1_scale = Vector3(50, 50, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rw1we"]
+albedo_texture = ExtResource("3_266yw")
 
 [node name="Racetrack" type="Node3D"]
 
@@ -37,3 +41,35 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 material = SubResource("StandardMaterial3D_hfctk")
+
+[node name="BorderLeft" type="CSGPolygon3D" parent="." groups=["road"]]
+transform = Transform3D(0.999946, 0, 0.0103671, 0, 1, 0, -0.0103671, 0, 0.999946, -0.000206629, 4.76837e-07, -0.00248933)
+use_collision = true
+polygon = PackedVector2Array(0, 0, 0.00200227, 0.0557726, 0.017323, 0.0556996, 0.0145804, 0.000222396)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 0.1
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("StandardMaterial3D_rw1we")
+
+[node name="BorderRight" type="CSGPolygon3D" parent="." groups=["road"]]
+transform = Transform3D(0.999946, 0, 0.0103671, 0, 1, 0, -0.0103671, 0, 0.999946, -0.000206629, 4.76837e-07, -0.00248933)
+use_collision = true
+polygon = PackedVector2Array(0.134316, -0.00087725, 0.134224, 0.0530404, 0.14866, 0.0540638, 0.15, 0)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 0.1
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("StandardMaterial3D_rw1we")
